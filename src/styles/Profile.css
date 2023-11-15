@@ -1,0 +1,147 @@
+.profile-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  height: 100%;
+}
+.profile-page-container {
+  width: 500px;
+  margin-top: 2rem;
+}
+
+.user-profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-second-section,
+.profile-first-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid lightgray;
+  padding: 18px 10px;
+}
+.profile-first-section {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  position: relative;
+}
+
+.profile-third-section {
+  flex-direction: column;
+  border: 1px solid lightgray;
+  display: flex;
+  padding: 18px 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.profile-id {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgb(107, 1, 107);
+  color: white;
+  padding: 6px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.upload-file-div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recipe-per-userId-div {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  border: solid 1px lightgray;
+  padding: 8px;
+}
+.recipe-per-userId-div img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.recipe-per-userId-div div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.delete-account-btn {
+  background-color: red;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+.delete-account-btn:hover {
+  background-color: rgb(152, 1, 1);
+}
+
+#file {
+  background-color: rgb(232, 43, 10);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+/* DELETE ACCOUNT MODAL */
+.delete-modal-container {
+  width: 500px;
+  background-color: white;
+  border: solid 1px gray;
+  position: absolute;
+  transition: 0.25s;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.ja-btn {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 2rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: 0.12s;
+}
+.nein-btn {
+  background-color: purple;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.12s;
+}
+
+.ja-btn:hover {
+  background-color: rgb(152, 1, 1);
+}
+.nein-btn:hover {
+  background-color: rgb(84, 1, 84);
+}
+
+@media only screen and (max-width: 600px) {
+  .profile-first-section {
+    padding: 3rem 0.8rem;
+  }
+  .user-profile-img {
+    border-radius: 8px;
+  }
+}

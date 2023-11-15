@@ -1,0 +1,70 @@
+.header {
+  background-color: tomato;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+.avatar {
+  position: relative;
+}
+
+.profile-avatar {
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.logo h1 {
+  font-family: "Inria Serif";
+  cursor: pointer;
+}
+.search-bar {
+  padding: 6px;
+  width: 60%;
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0 0 0 1px rgb(255, 0, 0);
+  outline: none;
+}
+/* NAV BAR */
+.navbar-container {
+  background-color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 8px;
+  position: absolute;
+  border: 2px solid rgb(164, 26, 2);
+  bottom: -11.8rem;
+  right: 1.3rem;
+  box-shadow: 0 0 10px rgba(8, 7, 16, 0.4);
+  z-index: 1000;
+}
+.nav-link,
+.nav-item span {
+  color: inherit;
+  margin-left: 0.4rem;
+  cursor: pointer;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.login-btn {
+  background-color: rgb(93, 0, 93);
+  padding: 10px 14px;
+  border: none;
+  border-radius: 7px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+  color: white;
+}
+.login-btn:hover {
+  background-color: rgb(129, 0, 129);
+  transform: scaleX(1.1);
+}

@@ -1,0 +1,17 @@
+footer {
+  background-color: tomato;
+  color: rgb(31, 0, 31);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 5px;
+  margin-top: auto;
+}
+
+.footer-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
