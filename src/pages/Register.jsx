@@ -40,7 +40,7 @@ export const Register = () => {
         inputs.password === password.confirmPassword
       ) {
         const res = await axios.post(
-          "https://koch-8dbe7c0d957c.herokuapp.com//api/register",
+          "https://koch-8dbe7c0d957c.herokuapp.com/api/register",
           inputs,
           {
             withCredentials: true,
