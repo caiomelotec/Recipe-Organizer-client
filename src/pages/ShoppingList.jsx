@@ -1,5 +1,5 @@
 import { ShoppingListAccordion } from "../componentes/ShoppingListAccordion";
-import "../styles/ShoppingList.css";
+import "../styles/Shoppinglist.css";
 
 export const ShoppingList = () => {
   return (
