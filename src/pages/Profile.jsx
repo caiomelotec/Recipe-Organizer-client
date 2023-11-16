@@ -52,13 +52,13 @@ export const Profile = () => {
     const fetchData = async () => {
       try {
         const userResponse = await axios.get(
-          `https://koch-8dbe7c0d957c.herokuapp.com/api/usersbyid/${userId}`
+          `https://koch-8dbe7c0d957c.herokuapp.com/api/usersbyid/${userId}`,
           { withCredentials: true }
         );
         setUser(userResponse.data);
 
         const recipesResponse = await axios.get(
-          `https://koch-8dbe7c0d957c.herokuapp.com/recipesbyuserid/${userId}`
+          `https://koch-8dbe7c0d957c.herokuapp.com/recipesbyuserid/${userId}`,
           { withCredentials: true }
         );
         setRecipes(recipesResponse.data);
