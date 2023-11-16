@@ -57,7 +57,7 @@ export const Header = () => {
           <div>
             <Avatar
               className="profile-avatar"
-              name={`${currentUser.firstname} ${currentUser.lastname}`}
+              name={`${currentUser.user.firstname} ${currentUser.user.lastname}`}
               size="40"
               onClick={() => setToggle(!toggle)}
             />

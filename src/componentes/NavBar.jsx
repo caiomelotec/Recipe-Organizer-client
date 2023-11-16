@@ -30,7 +30,7 @@ export const NavBar = ({ setToggle, currentUser }) => {
       <div className="profile nav-item">
         <CgProfile />
         <Link
-          to={`/profile/${currentUser.id}`}
+          to={`/profile/${currentUser.user.id}`}
           className="nav-link"
           onClick={() => setToggle(false)}
         >
@@ -40,7 +40,7 @@ export const NavBar = ({ setToggle, currentUser }) => {
       <div className="profile nav-item">
         <BsCardChecklist size={20} />
         <Link
-          to={`/shoppingList/${currentUser.id}`}
+          to={`/shoppingList/${currentUser.user.id}`}
           className="nav-link"
           onClick={() => setToggle(false)}
         >
