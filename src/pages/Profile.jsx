@@ -3,8 +3,13 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../styles/Profile.css";
 import { DeleteAccountModal } from "../componentes/DeleteAccountModal";
+import { useAuthStore } from "../store/authStore";
 
 export const Profile = () => {
+  const { currentUser } = useAuthStore((state) => ({
+    currentUser: state.currentUser || null,
+  }));
+
   const { userId } = useParams();
   const [err, setErr] = useState(null);
   const [user, setUser] = useState(null);
@@ -46,12 +51,22 @@ export const Profile = () => {
       w;
     }
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Assuming you have a token stored in your application state
+        const authToken = currentUser.token; // Replace with your actual token
+
+        // Request for user data
         const userResponse = await axios.get(
           `https://koch-8dbe7c0d957c.herokuapp.com/api/usersbyid/${userId}`,
-          { withCredentials: true }
+          {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+            },
+          }
         );
         setUser(userResponse.data);
 
@@ -59,9 +74,15 @@ export const Profile = () => {
         console.log("Headers for userResponse:", userResponse.headers);
         console.log("User response", userResponse);
 
+        // Request for recipes data
         const recipesResponse = await axios.get(
           `https://koch-8dbe7c0d957c.herokuapp.com/recipesbyuserid/${userId}`,
-          { withCredentials: true }
+          {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+            },
+          }
         );
         setRecipes(recipesResponse.data);
 
