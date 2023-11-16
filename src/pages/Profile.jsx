@@ -49,12 +49,6 @@ export const Profile = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const cookieValue = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("YOUR-COOKIE="))
-        .split("=")[1];
-
-      console.log("Cookie string:", cookieValue);
       try {
         const userResponse = await axios.get(
           `https://koch-8dbe7c0d957c.herokuapp.com/api/usersbyid/${userId}`,
