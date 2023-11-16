@@ -49,51 +49,29 @@ export const Profile = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const cookieString = document.cookie;
+      console.log("Cookie string:", cookieString);
       try {
-        // Get the JWT token from the cookies
-        const jwtToken = document.cookie
-          .split("; ")
-          .find((row) => row.startsWith("token="))
-          .split("=")[1];
-
-        // Include the token in the headers of the requests
-        const headers = {
-          Authorization: `Bearer ${jwtToken}`,
-        };
-
-        console.log(headers);
-
-        // Fetch user data
         const userResponse = await axios.get(
           `https://koch-8dbe7c0d957c.herokuapp.com/api/usersbyid/${userId}`,
-          { headers, withCredentials: true }
+          { withCredentials: true }
         );
+        setUser(userResponse.data);
 
-        if (userResponse.data) {
-          setUser(userResponse.data);
-        } else {
-          console.error("User data not found");
-        }
-
-        // Fetch recipes data
         const recipesResponse = await axios.get(
           `https://koch-8dbe7c0d957c.herokuapp.com/recipesbyuserid/${userId}`,
-          { headers, withCredentials: true }
+          { withCredentials: true }
         );
-
-        if (recipesResponse.data) {
-          setRecipes(recipesResponse.data);
-        } else {
-          console.error("Recipes data not found");
-        }
+        setRecipes(recipesResponse.data);
       } catch (err) {
-        setErr(err.response ? err.response.data : "An error occurred");
-        console.error(err.response ? err.response.data : err.message);
+        setErr(err.response.data);
+        console.log(err.response.data);
       }
     };
 
-    // Call the fetchData function when the userId changes
-    fetchData();
+    if (userId) {
+      fetchData();
+    }
   }, [userId]);
 
   // Handle errors
