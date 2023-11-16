@@ -51,15 +51,28 @@ export const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Get the JWT token from the cookies
+        const jwtToken = document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("token="))
+          .split("=")[1];
+
+        // Include the token in the headers of the requests
+        const headers = {
+          Authorization: `Bearer ${jwtToken}`,
+        };
+
+        // Fetch user data
         const userResponse = await axios.get(
           `https://koch-8dbe7c0d957c.herokuapp.com/api/usersbyid/${userId}`,
-          { withCredentials: true }
+          { headers, withCredentials: true }
         );
         setUser(userResponse.data);
 
+        // Fetch recipes data
         const recipesResponse = await axios.get(
           `https://koch-8dbe7c0d957c.herokuapp.com/recipesbyuserid/${userId}`,
-          { withCredentials: true }
+          { headers, withCredentials: true }
         );
         setRecipes(recipesResponse.data);
       } catch (err) {
@@ -68,9 +81,8 @@ export const Profile = () => {
       }
     };
 
-    if (userId) {
-      fetchData();
-    }
+    // Call the fetchData function when the userId changes
+    fetchData();
   }, [userId]);
 
   // Handle errors
