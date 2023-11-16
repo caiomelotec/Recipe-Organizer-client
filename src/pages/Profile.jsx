@@ -57,6 +57,7 @@ export const Profile = () => {
 
         // Log headers for userResponse
         console.log("Headers for userResponse:", userResponse.headers);
+        console.log("User response", userResponse);
 
         const recipesResponse = await axios.get(
           `https://koch-8dbe7c0d957c.herokuapp.com/recipesbyuserid/${userId}`,
@@ -66,6 +67,7 @@ export const Profile = () => {
 
         // Log headers for recipesResponse
         console.log("Headers for recipesResponse:", recipesResponse.headers);
+        console.log("Recipes for recipesResponse:", recipesResponse);
       } catch (err) {
         setErr(err.response.data);
         console.log(err.response.data);
