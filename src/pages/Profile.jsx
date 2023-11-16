@@ -52,14 +52,14 @@ export const Profile = () => {
     const fetchData = async () => {
       try {
         const userResponse = await axios.get(
-          `https://koch-8dbe7c0d957c.herokuapp.com/api/usersbyid/${userId}`,
-          { withCredentials: true }
+          `https://koch-8dbe7c0d957c.herokuapp.com/api/usersbyid/${userId}`
+          // { withCredentials: true }
         );
         setUser(userResponse.data);
 
         const recipesResponse = await axios.get(
-          `https://koch-8dbe7c0d957c.herokuapp.com/recipesbyuserid/${userId}`,
-          { withCredentials: true }
+          `https://koch-8dbe7c0d957c.herokuapp.com/recipesbyuserid/${userId}`
+          // { withCredentials: true }
         );
         setRecipes(recipesResponse.data);
       } catch (err) {
@@ -123,7 +123,7 @@ export const Profile = () => {
               <img src={item.imgUrl} alt="" />
               <div>
                 <Link
-                  to={`http://localhost:5173/recipes/${item.recipe_id}`}
+                  to={`https://koch-by-caio-melo.netlify.app/recipes/${item.recipe_id}`}
                   style={{ color: "inherit" }}
                 >
                   <h3>{item.recipe_name}</h3>
