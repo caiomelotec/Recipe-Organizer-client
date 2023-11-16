@@ -47,7 +47,6 @@ export const Profile = () => {
     }
   };
 
-  // Fetch user data and recipes data when userId changes
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -62,22 +61,34 @@ export const Profile = () => {
           Authorization: `Bearer ${jwtToken}`,
         };
 
+        console.log(headers);
+
         // Fetch user data
         const userResponse = await axios.get(
           `https://koch-8dbe7c0d957c.herokuapp.com/api/usersbyid/${userId}`,
           { headers, withCredentials: true }
         );
-        setUser(userResponse.data);
+
+        if (userResponse.data) {
+          setUser(userResponse.data);
+        } else {
+          console.error("User data not found");
+        }
 
         // Fetch recipes data
         const recipesResponse = await axios.get(
           `https://koch-8dbe7c0d957c.herokuapp.com/recipesbyuserid/${userId}`,
           { headers, withCredentials: true }
         );
-        setRecipes(recipesResponse.data);
+
+        if (recipesResponse.data) {
+          setRecipes(recipesResponse.data);
+        } else {
+          console.error("Recipes data not found");
+        }
       } catch (err) {
-        setErr(err.response.data);
-        console.log(err.response.data);
+        setErr(err.response ? err.response.data : "An error occurred");
+        console.error(err.response ? err.response.data : err.message);
       }
     };
 
