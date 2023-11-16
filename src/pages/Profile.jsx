@@ -60,7 +60,7 @@ export const Profile = () => {
 
         // Request for user data
         const userResponse = await axios.get(
-          `https://koch-8dbe7c0d957c.herokuapp.com/api/usersbyid/${userId}`,
+          `https://koch-8dbe7c0d957c.herokuapp.com/api/usersbyid/`,
           {
             withCredentials: true,
             headers: {
@@ -76,7 +76,7 @@ export const Profile = () => {
 
         // Request for recipes data
         const recipesResponse = await axios.get(
-          `https://koch-8dbe7c0d957c.herokuapp.com/recipesbyuserid/${userId}`,
+          `https://koch-8dbe7c0d957c.herokuapp.com/recipesbyuserid/`,
           {
             withCredentials: true,
             headers: {
