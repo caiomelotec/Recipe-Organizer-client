@@ -118,7 +118,7 @@ export const RecipeDetails = () => {
                 <button
                   className="delete-recipe-btn edit-recipe-btn"
                   style={
-                    currentUser?.id == recipe.id
+                    currentUser?.user.id == recipe.id
                       ? { cursor: "pointer" }
                       : { cursor: " not-allowed", backgroundColor: "gray" }
                   }
@@ -132,7 +132,7 @@ export const RecipeDetails = () => {
                 className="delete-recipe-btn"
                 onClick={deleteRecipeById}
                 style={
-                  currentUser.id == recipe.id
+                  currentUser.user.id == recipe.id
                     ? { cursor: "pointer" }
                     : { cursor: " not-allowed", backgroundColor: "gray" }
                 }
