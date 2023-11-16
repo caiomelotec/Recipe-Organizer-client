@@ -20,6 +20,9 @@ export const Profile = () => {
   // Function to update the user's profile image
   const handleUploadImg = async (e) => {
     e.preventDefault();
+
+    const authToken = currentUser.token;
+
     const imgUrl = await upload();
     try {
       await axios.put(
@@ -27,7 +30,12 @@ export const Profile = () => {
         {
           img: file ? imgUrl : "",
         },
-        { withCredentials: true }
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
       );
       window.location.reload();
     } catch (err) {
@@ -51,12 +59,11 @@ export const Profile = () => {
       w;
     }
   };
-
+  // fetch user and recipe data by id
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Assuming you have a token stored in your application state
-        const authToken = currentUser.token; // Replace with your actual token
+        const authToken = currentUser.token;
 
         // Request for user data
         const userResponse = await axios.get(
@@ -70,10 +77,6 @@ export const Profile = () => {
         );
         setUser(userResponse.data);
 
-        // Log headers for userResponse
-        console.log("Headers for userResponse:", userResponse.headers);
-        console.log("User response", userResponse);
-
         // Request for recipes data
         const recipesResponse = await axios.get(
           `https://koch-8dbe7c0d957c.herokuapp.com/recipesbyuserid/`,
@@ -85,10 +88,6 @@ export const Profile = () => {
           }
         );
         setRecipes(recipesResponse.data);
-
-        // Log headers for recipesResponse
-        console.log("Headers for recipesResponse:", recipesResponse.headers);
-        console.log("Recipes for recipesResponse:", recipesResponse);
       } catch (err) {
         setErr(err.response.data);
         console.log(err.response.data);
