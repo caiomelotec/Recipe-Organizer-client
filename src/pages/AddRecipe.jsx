@@ -9,6 +9,7 @@ import { AddRecipeFormErrors } from "../componentes/AddRecipeFormErrors";
 import { AddRecipeFormFirstSection } from "../componentes/AddRecipeFormFirstSection";
 import { AddRecipeFormSecondSection } from "../componentes/AddRecipeFormSecondSection";
 import { DynamicInputs } from "../componentes/DynamicInputs";
+import { useAuthStore } from "../store/authStore";
 // spinner
 import FadeLoader from "react-spinners/FadeLoader";
 
@@ -17,6 +18,11 @@ export const AddRecipe = () => {
   const state = location.state;
   const isEdit = location.search.includes("edit");
   const navigate = useNavigate();
+
+  const { currentUser } = useAuthStore((state) => ({
+    currentUser: state.currentUser || null,
+  }));
+  let authToken = currentUser.token;
   // file state
   const [file, setFile] = useState(null);
   // REACT QUILL
@@ -79,7 +85,12 @@ export const AddRecipe = () => {
         const res = await axios.post(
           "https://koch-8dbe7c0d957c.herokuapp.com/uploadrecipeimg",
           formData,
-          { withCredentials: true }
+          {
+            withCredentials: true,
+            headers: {
+              Authorization: authToken,
+            },
+          }
         );
         console.log(res.data);
         return res.data;
@@ -107,13 +118,21 @@ export const AddRecipe = () => {
         ? await axios.put(
             `https://koch-8dbe7c0d957c.herokuapp.com/recipes/${state.recipe.recipe_id}`,
             { requestData },
-            { withCredentials: true }
+            {
+              withCredentials: true,
+              headers: {
+                Authorization: authToken,
+              },
+            }
           )
         : await axios.post(
             "https://koch-8dbe7c0d957c.herokuapp.com/addrecipe",
             requestData,
             {
               withCredentials: true,
+              headers: {
+                Authorization: authToken,
+              },
             }
           );
       navigate("/");

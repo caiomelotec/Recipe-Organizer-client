@@ -49,11 +49,15 @@ export const RecipeDetails = () => {
   }, []);
 
   const deleteRecipeById = async () => {
+    const authToken = currentUser.token;
     try {
       const res = await axios.delete(
         `https://koch-8dbe7c0d957c.herokuapp.com/recipes/${recipeId}`,
         {
           withCredentials: true,
+          headers: {
+            Authorization: authToken,
+          },
         }
       );
       console.log(res);
