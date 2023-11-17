@@ -4,11 +4,12 @@ import { useAuthStore } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
 
 export const DeleteAccountModal = ({ deletemodal, setDeleteModal }) => {
-  const { currentUser } = useAuthStore((state) => ({
+  const { currentUser, logout } = useAuthStore((state) => ({
     currentUser: state.currentUser || null,
+    logout: state.logout,
   }));
 
-  const { logout } = useAuthStore((state) => state);
+  // const { logout } = useAuthStore((state) => state);
   const navigate = useNavigate();
 
   const deleteUserById = async () => {
