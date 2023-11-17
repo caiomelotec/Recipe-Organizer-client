@@ -33,7 +33,7 @@ export const Profile = () => {
         {
           withCredentials: true,
           headers: {
-            Authorization: `Bearer ${authToken}`,
+            Authorization: authToken,
           },
         }
       );
@@ -71,7 +71,7 @@ export const Profile = () => {
           {
             withCredentials: true,
             headers: {
-              Authorization: `Bearer ${authToken}`,
+              Authorization: authToken,
             },
           }
         );
@@ -83,7 +83,7 @@ export const Profile = () => {
           {
             withCredentials: true,
             headers: {
-              Authorization: `Bearer ${authToken}`,
+              Authorization: authToken,
             },
           }
         );
