@@ -4,13 +4,21 @@ import { useAuthStore } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
 
 export const DeleteAccountModal = ({ deletemodal, setDeleteModal }) => {
+  const { currentUser } = useAuthStore((state) => ({
+    currentUser: state.currentUser || null,
+  }));
+
   const { logout } = useAuthStore((state) => state);
   const navigate = useNavigate();
 
   const deleteUserById = async () => {
+    const authToken = currentUser.token;
     try {
       await axios.delete("https://koch-8dbe7c0d957c.herokuapp.com/deleteuser", {
         withCredentials: true,
+        headers: {
+          Authorization: authToken,
+        },
       });
       await logout();
       navigate("/");
