@@ -76,12 +76,19 @@ export const RecipeDetails = () => {
       recipeName: recipeName,
       ingredientsNames: ingredientsNames,
     };
-    console.log(requestData);
+
+    const authToken = currentUser.token;
+
     try {
       axios.post(
         "https://koch-8dbe7c0d957c.herokuapp.com/shoppingList",
         { requestData },
-        { withCredentials: true }
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: authToken,
+          },
+        }
       );
       notify();
     } catch (error) {
